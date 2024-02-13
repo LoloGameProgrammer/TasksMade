@@ -20,7 +20,7 @@ const issues = await connectApi.json();
 	<Layout>
 		<section>
 			{
-				issues ? (
+				!issues ? (
 					<>
 						<p>Error : Api Limit</p>
 						<Card />

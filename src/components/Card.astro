@@ -1,15 +1,29 @@
 ---
 const props = Astro.props;
-const { title, number, creator, state, assignees = ["Lolo", "Pepe"] } = props;
+const {
+    title,
+    number,
+    creator,
+    state,
+    assignees = [
+        {
+            login: "Lolo",
+        },
+        {
+            login: "Pepe",
+        },
+    ],
+} = props;
 ---
 
 <section>
     <header>
         <h1>{number}</h1>
         <h2>{title}</h2>
+        <h2>{state}</h2>
     </header>
     <p>Owner : {creator}</p>
-    Assignees : {assignees.map((assignee: String) => <p>{assignee}</p>)}
+    Assignees : {assignees.map(({login}) => <p>{login}</p>)}
 </section>
 
 <style>
