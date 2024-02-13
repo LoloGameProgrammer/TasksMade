@@ -1,8 +1,14 @@
 ---
+import Card from "../components/Card.astro";
+import Layout from "../layouts/BaseLayout.astro";
 
+const URL = "https://api.github.com/repos/InvernaderoVR/InvernaderoVR/issues";
+
+const connectApi = await fetch(URL);
+const issues = await connectApi.json();
 ---
 
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -10,7 +16,32 @@
 		<meta name="generator" content={Astro.generator} />
 		<title>Astro</title>
 	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+
+	<Layout>
+		<section>
+			{
+				issues ? (
+					<p>Error : Api Limit</p>
+				) : (
+					issues?.map(
+						({
+							title,
+							number,
+							user: { login: creator },
+							asignee: { login: personAsigned },
+						}) => (
+							<Card
+								title={title}
+								number={number}
+								creator={creator}
+								asignee={personAsigned}
+							/>
+						),
+					)
+				)
+			}
+		</section>
+	</Layout>
+
+
 </html>

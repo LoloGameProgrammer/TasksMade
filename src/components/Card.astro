@@ -1,0 +1,21 @@
+---
+const props = Astro.props;
+const { title, number, creator, assignee } = props;
+---
+
+<section>
+    <header>
+        <h1>{number}</h1>
+        <h2>{title}</h2>
+    </header>
+    <p>Owner : {creator}</p>
+    <p>Asignee : {assignee}</p>
+</section>
+
+<style>
+    header {
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+    }
+</style>
