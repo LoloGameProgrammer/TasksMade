@@ -1,6 +1,6 @@
 ---
 const props = Astro.props;
-const { title, number, creator, assignee } = props;
+const { title, number, creator, state, assignees = ["Lolo", "Pepe"] } = props;
 ---
 
 <section>
@@ -9,7 +9,7 @@ const { title, number, creator, assignee } = props;
         <h2>{title}</h2>
     </header>
     <p>Owner : {creator}</p>
-    <p>Asignee : {assignee}</p>
+    Assignees : {assignees.map((assignee: String) => <p>{assignee}</p>)}
 </section>
 
 <style>

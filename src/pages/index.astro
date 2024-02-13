@@ -21,20 +21,25 @@ const issues = await connectApi.json();
 		<section>
 			{
 				issues ? (
-					<p>Error : Api Limit</p>
+					<>
+						<p>Error : Api Limit</p>
+						<Card />
+					</>
 				) : (
 					issues?.map(
 						({
 							title,
 							number,
 							user: { login: creator },
-							asignee: { login: personAsigned },
+							state,
+							assignees,
 						}) => (
 							<Card
 								title={title}
 								number={number}
 								creator={creator}
-								asignee={personAsigned}
+								state={state}
+								assignees={assignees}
 							/>
 						),
 					)
