@@ -1,35 +1,77 @@
 ---
 const props = Astro.props;
 const {
-    title,
-    number,
-    creator,
-    state,
+    title = "Modelos Plantas",
+    number = 0,
+    creator = "Javier",
+    state = "close",
     assignees = [
         {
-            login: "Lolo",
+            login: "Gonzalo",
         },
         {
-            login: "Pepe",
+            login: "Guille",
         },
     ],
 } = props;
+
+const STATE_TASK = {
+    PROCESS: "open",
+    DONE: "close",
+};
+
+const isOpen = state === STATE_TASK.PROCESS ? true : false;
 ---
 
-<section>
+<section class="card">
     <header>
-        <h1>{number}</h1>
-        <h2>{title}</h2>
-        <h2>{state}</h2>
+        <p>{number}. {title}</p>
     </header>
+    <p
+        class:list={[
+            "status",
+            {
+                green: isOpen,
+                red: !isOpen,
+            },
+        ]}
+    >
+        {state}
+    </p>
     <p>Owner : {creator}</p>
-    Assignees : {assignees.map(({login}) => <p>{login}</p>)}
+    <section class="assignees">
+        <p>Asignees :</p>
+        {assignees.map(({ login }) => <p>{login}</p>)}
+    </section>
 </section>
 
 <style>
+    .card{
+        border:2px solid lightslategray;
+        padding: 1rem;
+        width: 250px;
+    }
     header {
         display: flex;
         flex-direction: row;
         gap: 0.5rem;
+    }
+    .green {
+        color: green;
+        background-color: lightgreen;
+    }
+    .red {
+        color: red;
+        background-color: lightpink;
+    }
+    .status {
+        text-transform: capitalize;
+        padding: 0.25rem;
+        display: inline;
+    }
+    .assignees {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
     }
 </style>
