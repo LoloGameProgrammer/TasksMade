@@ -13,6 +13,12 @@ const {
             login: "Guille",
         },
     ],
+    labels = [
+        {
+            name: "art",
+            color: "D2122E",
+        },
+    ],
 } = props;
 
 const STATE_TASK = {
@@ -43,19 +49,16 @@ const isOpen = state === STATE_TASK.PROCESS ? true : false;
         <p>Asignees :</p>
         {assignees.map(({ login }) => <p>{login}</p>)}
     </section>
+    <section>
+        {
+            labels.map(({ name, color }) => (
+                <p class={`text-[#${color}]`}>{name}</p>
+            ))
+        }
+    </section>
 </section>
 
 <style>
-    .card{
-        border:2px solid lightslategray;
-        padding: 1rem;
-        width: 250px;
-    }
-    header {
-        display: flex;
-        flex-direction: row;
-        gap: 0.5rem;
-    }
     .green {
         color: green;
         background-color: lightgreen;
@@ -68,10 +71,5 @@ const isOpen = state === STATE_TASK.PROCESS ? true : false;
         text-transform: capitalize;
         padding: 0.25rem;
         display: inline;
-    }
-    .assignees {
-        display: flex;
-        flex-direction: row;
-        gap: 1rem;
     }
 </style>

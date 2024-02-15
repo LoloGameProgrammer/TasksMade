@@ -2,10 +2,12 @@
 import Card from "../components/Card.astro";
 import Layout from "../layouts/BaseLayout.astro";
 
-const URL = "https://api.github.com/repos/InvernaderoVR/InvernaderoVR/issues";
+// const URL = "https://api.github.com/repos/InvernaderoVR/InvernaderoVR/issues";
 
-const connectApi = await fetch(URL);
-const issues = await connectApi.json();
+// const connectApi = await fetch(URL);
+// const issues = await connectApi.json();
+
+const issues = [];
 ---
 
 <html lang="es">
@@ -20,7 +22,7 @@ const issues = await connectApi.json();
 	<Layout>
 		<section>
 			{
-				!issues ? (
+				issues.length === 0 ? (
 					<>
 						<p>Error : Api Limit</p>
 						<Card />
@@ -49,12 +51,12 @@ const issues = await connectApi.json();
 	</Layout>
 
 
-</html>
 
-<style>
-	section{
-		display: flex;
-		flex-direction: column;
-		gap: .25rem;
-	}
-</style>
+	<style>
+		section {
+			display: flex;
+			flex-direction: column;
+			gap: 0.25rem;
+		}
+	</style>
+</html>
