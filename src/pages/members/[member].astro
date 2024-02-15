@@ -44,13 +44,15 @@ const infoMember = tasks[0].assignees.find(({ login }) => login === member);
         <h1>{member}</h1>
     </header>
 
-    {
-        tasks?.map(({ title, number }) => (
-            <a href={`/tasks/${number}`}>
-                {number}.{title}
-            </a>
-        ))
-    }
+    <article>
+        {
+            tasks?.map(({ title, number }) => (
+                <a href={`/tasks/${number}`}>
+                    {number}.{title}
+                </a>
+            ))
+        }
+    </article>
 </BaseLayout>
 
 <style>
@@ -60,12 +62,19 @@ const infoMember = tasks[0].assignees.find(({ login }) => login === member);
         gap: 0.5rem;
         align-items: center;
     }
-    header h1{
+    
+    header h1 {
         text-style: italic;
     }
+
     img {
         width: 100px;
         height: 100px;
         margin: 1rem;
+    }
+
+    article{
+        display: flex;
+        flex-direction: column;
     }
 </style>

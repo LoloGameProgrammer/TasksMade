@@ -27,8 +27,22 @@ console.log(Astro.params, Astro.props);
 ---
 
 <BaseLayout header="Tasks">
-    <h1>
-        {number}. {title}
-    </h1>
-    <a class="underline" href={html_url} target="_blank">{html_url}</a>
+    <section>
+        <h1>
+            {number}. {title}
+        </h1>
+        <a href={html_url} target="_blank">{html_url}</a>
+        <p>{state}</p>
+        <article>
+            {
+                assignees.map(({login}) => <a href={`/members/${login}`}>{login}</a>)
+            }
+        </article>
+    </section>
 </BaseLayout>
+
+<style>
+    a{
+        text-decoration: underline;
+    }
+</style>
