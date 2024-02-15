@@ -1,24 +1,12 @@
 ---
 const props = Astro.props;
 const {
-    title = "Modelos Plantas",
-    number = 0,
-    creator = "Javier",
-    state = "close",
-    assignees = [
-        {
-            login: "Gonzalo",
-        },
-        {
-            login: "Guille",
-        },
-    ],
-    labels = [
-        {
-            name: "art",
-            color: "D2122E",
-        },
-    ],
+    title ,
+    number,
+    creator,
+    state,
+    assignees,
+    labels,
 } = props;
 
 const STATE_TASK = {
