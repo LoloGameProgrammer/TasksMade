@@ -9,7 +9,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         {
             allTags?.map(({ name, color }) => (
                 <li>
-                    <a href={`/tags/${name}`} class={`text-[#${color}]`}>
+                    <a href={`/tags/${name}`} class={`text-[#${color}] underline`}>
                         {name}
                     </a>
                 </li>
