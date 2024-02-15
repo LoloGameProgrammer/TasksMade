@@ -1,10 +1,10 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getAllIssues } from "../../api/getAllIssues";
-
-// const allTasks = await getAllIssues()
+import { issues } from "../../data/issues";
+import { Card } from "../../components";
+console.log(issues);
 ---
 
 <BaseLayout header="Tasks">
-
+    {issues?.map(({ number, title, state }) => <Card title={title} number={number} state={state} />)}
 </BaseLayout>

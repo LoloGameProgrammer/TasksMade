@@ -1,5 +1,4 @@
 ---
-import Card from "../components/Card.astro";
 import Layout from "../layouts/BaseLayout.astro";
 
 // const URL = "https://api.github.com/repos/InvernaderoVR/InvernaderoVR/issues";
@@ -20,31 +19,7 @@ const issues = [];
 	</head>
 
 	<Layout header="Home">
-		<section>
-			<!-- {
-				issues.length === 0 ? (
-					<Card />
-				) : (
-					issues?.map(
-						({
-							title,
-							number,
-							user: { login: creator },
-							state,
-							assignees,
-						}) => (
-							<Card
-								title={title}
-								number={number}
-								creator={creator}
-								state={state}
-								assignees={assignees}
-							/>
-						),
-					)
-				)
-			} -->
-		</section>
+		<p>Home, sweet Home!</p>
 	</Layout>
 
 	<style>
