@@ -46,9 +46,9 @@ const infoMember = tasks[0].assignees.find(({ login }) => login === member);
 
     {
         tasks?.map(({ title, number }) => (
-            <p>
+            <a href={`/tasks/${number}`}>
                 {number}.{title}
-            </p>
+            </a>
         ))
     }
 </BaseLayout>

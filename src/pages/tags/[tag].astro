@@ -4,9 +4,8 @@ import { issues } from "../../data/issues.js";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
-    
     const allTasks = issues;
-    
+
     return [...allTags].map(({ name, description, color }) => {
         const filteredTasks = allTasks.filter(({ labels }) =>
             labels.find((label: { name: String }) => label.name === name),
@@ -15,16 +14,20 @@ export async function getStaticPaths() {
         return {
             params: {
                 tag: name,
+            },
+            props: {
                 description: description,
                 color: color,
+                tasks: filteredTasks,
             },
-            props: { tasks: filteredTasks },
         };
     });
 }
 
-const { tag, description, color } = Astro.params;
-const { tasks } = Astro.props;
+const { tag } = Astro.params;
+console.log(Astro.params);
+const { tasks, description, color } = Astro.props;
+console.log(Astro.props)
 ---
 
 <BaseLayout header="Tags">
@@ -32,11 +35,11 @@ const { tasks } = Astro.props;
     <p>{description}</p>
     <ul>
         {
-            tasks?.map(({ title }) => {
+            tasks?.map(({ title, number }) => {
                 return (
                     <li>
                         <a
-                            href={`/tasks/${title}`}
+                            href={`/tasks/${number}`}
                             class:list={["underline", `text-[#${color}]`]}
                         >
                             {title}

@@ -1,0 +1,34 @@
+---
+import { issues } from "../../data/issues";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export const getStaticPaths = async () => {
+    const allTasks = issues;
+
+    return allTasks.map((task) => {
+        const { number } = task;
+        return {
+            params: {
+                number: number,
+            },
+            props: {
+                task: task,
+            },
+        };
+    });
+};
+
+const { number } = Astro.params;
+const {
+    task: { title, state, labels, assignees, html_url },
+} = Astro.props;
+
+console.log(Astro.params, Astro.props);
+---
+
+<BaseLayout header="Tasks">
+    <h1>
+        {number}. {title}
+    </h1>
+    <a class="underline" href={html_url} target="_blank">{html_url}</a>
+</BaseLayout>

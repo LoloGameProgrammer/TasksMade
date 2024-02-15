@@ -11,8 +11,8 @@ const isOpen = state === STATE_TASK.PROCESS ? true : false;
 ---
 
 <section class="card">
-    <a href=`/tasks/${number}`>{number}. {title}</a>
-    <p
+    <a href=`/tasks/${number}` class="underline">{number}. {title}</a>
+    <!-- <p
         class:list={[
             "status",
             {
@@ -22,7 +22,7 @@ const isOpen = state === STATE_TASK.PROCESS ? true : false;
         ]}
     >
         {state}
-    </p>
+    </p> -->
     <!-- <p>Owner : {creator}</p>
     <section class="assignees">
         <p>Asignees :</p>
@@ -51,9 +51,9 @@ const isOpen = state === STATE_TASK.PROCESS ? true : false;
         padding: 0.25rem;
         display: inline;
     }
-    .card{
+    .card {
         display: flex;
         gap: 1rem;
-        margin: .25rem;
+        margin: 0.25rem;
     }
 </style>
