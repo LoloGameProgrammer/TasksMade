@@ -1,0 +1,39 @@
+---
+// import { getAllIssues } from "../../api/getAllIssues";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+// const issues = await getAllIssues();
+import { issues } from '../../data/issues.js';
+
+
+const assignees = [...new Set(
+    [...issues]
+        .map(({ assignees }) =>
+            assignees.map(({ login }) => {
+                console.log(login);
+                return login;
+            }),
+        )
+        .flat(),
+)]
+console.log(assignees);
+---
+
+<BaseLayout header="Members">
+    <h2>All Members of InvernaderoVR</h2>
+    <ul>
+        {
+            [...assignees].map((member) => (
+                <li>
+                    <a href={`/members/${member}`}>{member}</a>
+                </li>
+            ))
+        }
+    </ul>
+</BaseLayout>
+
+<style>
+    ul {
+        display: flex;
+        gap: 0.5rem;
+    }
+</style>

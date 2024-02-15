@@ -1,0 +1,19 @@
+---
+import { allTags } from "../../data/getAllTags.js";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout header="Tags">
+    <p>All the Tags</p>
+    <ul>
+        {
+            allTags?.map(({ name, color }) => (
+                <li>
+                    <a href={`/tags/${name}`} class={`text-[#${color}]`}>
+                        {name}
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+</BaseLayout>

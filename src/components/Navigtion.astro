@@ -1,0 +1,23 @@
+---
+import { paths as routes } from '../data/paths'
+---
+
+<nav>
+    <ul>
+        {
+            routes.map(({ name, url }) => (
+                <li>
+                    <a href={url}>{name}</a>
+                </li>
+            ))
+        }
+    </ul>
+</nav>
+
+<style>
+    ul{
+        display: flex;
+        flex-direction: row;
+        column-gap: .5rem;
+    }
+</style>

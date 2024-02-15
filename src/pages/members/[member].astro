@@ -1,0 +1,67 @@
+---
+import { issues } from "../../data/issues";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export const getStaticPaths = async () => {
+    const allTasks = issues;
+
+    const assignees = [
+        ...new Set(
+            [...allTasks]
+                .map(({ assignees }) =>
+                    assignees.map(({ login }) => {
+                        return login;
+                    }),
+                )
+                .flat(),
+        ),
+    ];
+
+    return assignees.map((login) => {
+        const filteredTasks = allTasks.filter(({ assignees }) =>
+            assignees.find(({ login: userName }) => userName === login),
+        );
+
+        return {
+            params: {
+                member: login,
+            },
+            props: {
+                tasks: filteredTasks,
+            },
+        };
+    });
+};
+
+const { member } = Astro.params;
+const { tasks } = Astro.props;
+const infoMember = tasks[0].assignees.find(({ login }) => login === member);
+---
+
+<BaseLayout header="Members">
+    <header>
+        <img src={infoMember?.avatar_url} />
+        <h1>{member}</h1>
+    </header>
+
+    {
+        tasks?.map(({ title, number }) => (
+            <p>
+                {number}.{title}
+            </p>
+        ))
+    }
+</BaseLayout>
+
+<style>
+    header{
+        display: flex;
+        flex-direction: row;
+        gap: .5rem;
+        align-items: center;
+    }
+    img {
+        width: 100px;
+        height: 100px;
+    }
+</style>

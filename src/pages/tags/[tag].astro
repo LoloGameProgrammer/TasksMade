@@ -1,0 +1,49 @@
+---
+import { allTags } from "../../data/getAllTags";
+import { issues } from "../../data/issues.js";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+    
+    const allTasks = issues;
+    
+    return [...allTags].map(({ name, description, color }) => {
+        const filteredTasks = allTasks.filter(({ labels }) =>
+            labels.find((label: { name: String }) => label.name === name),
+        );
+
+        return {
+            params: {
+                tag: name,
+                description: description,
+                color: color,
+            },
+            props: { tasks: filteredTasks },
+        };
+    });
+}
+
+const { tag, description, color } = Astro.params;
+const { tasks } = Astro.props;
+---
+
+<BaseLayout header="Tags">
+    <h1>{tag}</h1>
+    <p>{description}</p>
+    <ul>
+        {
+            tasks?.map(({ title }) => {
+                return (
+                    <li>
+                        <a
+                            href={`/tasks/${title}`}
+                            class:list={["underline", `text-[#${color}]`]}
+                        >
+                            {title}
+                        </a>
+                    </li>
+                );
+            })
+        }
+    </ul>
+</BaseLayout>

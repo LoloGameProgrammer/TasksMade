@@ -19,14 +19,11 @@ const issues = [];
 		<title>Astro</title>
 	</head>
 
-	<Layout>
+	<Layout header="Home">
 		<section>
-			{
+			<!-- {
 				issues.length === 0 ? (
-					<>
-						<p>Error : Api Limit</p>
-						<Card />
-					</>
+					<Card />
 				) : (
 					issues?.map(
 						({
@@ -46,11 +43,9 @@ const issues = [];
 						),
 					)
 				)
-			}
+			} -->
 		</section>
 	</Layout>
-
-
 
 	<style>
 		section {
