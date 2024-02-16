@@ -35,14 +35,28 @@ console.log(Astro.params, Astro.props);
         <p>{state}</p>
         <article>
             {
-                assignees.map(({login}) => <a href={`/members/${login}`}>{login}</a>)
+                assignees.map(({ login }) => (
+                    <a href={`/members/${login}`}>{login}</a>
+                ))
+            }
+        </article>
+        <article>
+            {
+                labels.map(({ name, color }) => {
+                    const hexColor = '#' + color
+                    return (
+                        <a href={`/tags/${name}`} class={`text-[${hexColor}]`}>
+                            {name}
+                        </a>
+                    );
+                })
             }
         </article>
     </section>
 </BaseLayout>
 
 <style>
-    a{
+    a {
         text-decoration: underline;
     }
 </style>

@@ -18,6 +18,8 @@ const { header } = Astro.props;
     <body>
         <h1>{header}</h1>
         <Nav />
-        <slot />
+        <main>
+            <slot />
+        </main>
     </body>
 </html>

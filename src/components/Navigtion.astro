@@ -1,23 +1,26 @@
 ---
-import { paths as routes } from '../data/paths'
+import { URLS_ROUTES as routes } from "../data/paths";
 ---
 
 <nav>
     <ul>
         {
-            routes.map(({ name, url }) => (
-                <li>
-                    <a href={url}>{name}</a>
-                </li>
-            ))
+            routes.map((route) => {
+                const { name, url } = Object.values(route).at(0);
+                return (
+                    <li>
+                        <a href={url}>{name}</a>
+                    </li>
+                );
+            })
         }
     </ul>
 </nav>
 
 <style>
-    ul{
+    ul {
         display: flex;
         flex-direction: row;
-        column-gap: .5rem;
+        column-gap: 0.5rem;
     }
 </style>

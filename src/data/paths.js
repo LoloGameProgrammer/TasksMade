@@ -1,22 +1,31 @@
-const paths = [
+const URLS_ROUTES = [
     {
-        name: "Home",
-        url: "/",
+        HOME: {
+            name: 'Home',
+            url: '/'
+        },
     },
     {
-        name: "Members",
-        url: "/members",
+        MEMBERS: {
+            name: 'Members',
+            url: '/members'
+        },
     },
     {
-        name: "Tags",
-        url: "/tags",
+        TAGS: {
+            name: "Tags",
+            url: "/tags",
+        },
     },
     {
-        name: "Tasks",
-        url: "/tasks",
-    },
-];
+        TASKS: {
+            name: "Tasks",
+            url: "/tasks",
+        },
+    }
+]
 
 export {
-    paths
+    URLS_ROUTES
 };
+
