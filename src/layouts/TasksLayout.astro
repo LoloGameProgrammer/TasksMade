@@ -3,7 +3,6 @@ import { URL_ROUTES } from "../data/paths";
 
 const { tasks } = Astro.props;
 const TASK_ROUTE = URL_ROUTES.TASKS;
-console.log(tasks, TASK_ROUTE);
 ---
 
 <slot name="Title" />
@@ -23,5 +22,8 @@ console.log(tasks, TASK_ROUTE);
     article {
         display: flex;
         flex-direction: column;
+    }
+    a{
+        text-decoration: underline;
     }
 </style>
