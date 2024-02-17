@@ -1,4 +1,27 @@
 ---
+import { URL_ROUTES } from "../data/paths";
 
+const { tasks } = Astro.props;
+const TASK_ROUTE = URL_ROUTES.TASKS;
+console.log(tasks, TASK_ROUTE);
 ---
 
+<slot name="Title" />
+<article>
+    {
+        tasks?.map(({ title, number }) => {
+            return (
+                <a href={`${TASK_ROUTE}/${number}`}>
+                    {number}.{title}
+                </a>
+            );
+        })
+    }
+</article>
+
+<style>
+    article {
+        display: flex;
+        flex-direction: column;
+    }
+</style>
