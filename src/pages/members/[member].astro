@@ -1,6 +1,9 @@
 ---
 import { issues } from "../../data/issues";
+import { URL_ROUTES } from "../../data/paths";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const TASK_ROUTE = URL_ROUTES.TASKS;
 
 export const getStaticPaths = async () => {
     const allTasks = issues;
@@ -47,7 +50,7 @@ const infoMember = tasks[0].assignees.find(({ login }) => login === member);
     <article>
         {
             tasks?.map(({ title, number }) => (
-                <a href={`/tasks/${number}`}>
+                <a href={`${TASK_ROUTE}/${number}`}>
                     {number}.{title}
                 </a>
             ))
@@ -62,7 +65,7 @@ const infoMember = tasks[0].assignees.find(({ login }) => login === member);
         gap: 0.5rem;
         align-items: center;
     }
-    
+
     header h1 {
         text-style: italic;
     }
@@ -73,7 +76,7 @@ const infoMember = tasks[0].assignees.find(({ login }) => login === member);
         margin: 1rem;
     }
 
-    article{
+    article {
         display: flex;
         flex-direction: column;
     }
