@@ -21,6 +21,12 @@ import { ROUTES as routes } from "../data/paths";
     ul {
         display: flex;
         flex-direction: row;
-        column-gap: 0.5rem;
+        /* column-gap: 0.5rem; */
+    }
+    li {
+        padding-inline: .5rem;
+    }
+    li:not(:last-child){
+        border-right: 1px solid black;
     }
 </style>
