@@ -2,6 +2,7 @@
 import { allTags } from "../../data/getAllTags";
 import { issues } from "../../data/issues.js";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import TasksLayout from "../../layouts/TasksLayout.astro";
 
 export async function getStaticPaths() {
     const allTasks = issues;
@@ -25,28 +26,13 @@ export async function getStaticPaths() {
 }
 
 const { tag } = Astro.params;
-console.log(Astro.params);
 const { tasks, description, color } = Astro.props;
-console.log(Astro.props)
 ---
 
 <BaseLayout header="Tags">
     <h1>{tag}</h1>
     <p>{description}</p>
-    <ul>
-        {
-            tasks?.map(({ title, number }) => {
-                return (
-                    <li>
-                        <a
-                            href={`/tasks/${number}`}
-                            class:list={["underline", `text-[#${color}]`]}
-                        >
-                            {title}
-                        </a>
-                    </li>
-                );
-            })
-        }
-    </ul>
+    <TasksLayout tasks={tasks}>
+        <h1 slot="Title">Tasks with the Tag <span class={`italic text-[#${color}]`}>{tag}</span></h1>
+    </TasksLayout>
 </BaseLayout>

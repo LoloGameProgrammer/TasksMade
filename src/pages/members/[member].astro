@@ -2,6 +2,7 @@
 import { issues } from "../../data/issues";
 import { URL_ROUTES } from "../../data/paths";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import TasksLayout from "../../layouts/TasksLayout.astro";
 
 const TASK_ROUTE = URL_ROUTES.TASKS;
 
@@ -46,16 +47,9 @@ const infoMember = tasks[0].assignees.find(({ login }) => login === member);
         <img src={infoMember?.avatar_url} />
         <h1>{member}</h1>
     </header>
-
-    <article>
-        {
-            tasks?.map(({ title, number }) => (
-                <a href={`${TASK_ROUTE}/${number}`}>
-                    {number}.{title}
-                </a>
-            ))
-        }
-    </article>
+    <TasksLayout tasks={tasks}>
+        <h1 slot="Title">Tasks Made by <span class="italic">{member}</span></h1>
+    </TasksLayout>
 </BaseLayout>
 
 <style>
@@ -65,19 +59,12 @@ const infoMember = tasks[0].assignees.find(({ login }) => login === member);
         gap: 0.5rem;
         align-items: center;
     }
-
     header h1 {
         text-style: italic;
     }
-
     img {
         width: 100px;
         height: 100px;
         margin: 1rem;
-    }
-
-    article {
-        display: flex;
-        flex-direction: column;
     }
 </style>
